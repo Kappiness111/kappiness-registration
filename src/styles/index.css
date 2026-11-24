@@ -164,3 +164,44 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ---- Save as PDF (staff dashboard) ---- */
+#print-root {
+  display: none;
+}
+@media print {
+  body > #root {
+    display: none !important;
+  }
+  #print-root {
+    display: block !important;
+    background: #fff;
+    color: #000;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  #print-root.print-landscape {
+    page: wide;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+}
+@page {
+  size: A4 portrait;
+  margin: 14mm;
+}
+@page wide {
+  size: A4 landscape;
+  margin: 12mm;
+}
+
+/* staff area: registration side panel */
+dialog.drawer[open] {
+  animation: drawer-in 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes drawer-in {
+  from { transform: translateX(24px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}

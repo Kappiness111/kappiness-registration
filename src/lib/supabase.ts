@@ -65,5 +65,16 @@ export interface RegistrationRow {
 
 export type RegistrationListRow = Pick<
   RegistrationRow,
-  'id' | 'registration_id' | 'full_name' | 'mobile_phone' | 'created_at' | 'referral_source' | 'referral_other'
+  | 'id'
+  | 'registration_id'
+  | 'full_name'
+  | 'email'
+  | 'mobile_phone'
+  | 'age'
+  | 'gender'
+  | 'created_at'
+  | 'referral_source'
+  | 'referral_other'
+  | 'research_permission'
+  | 'previously_registered'
 >;

@@ -4,24 +4,30 @@ project_id = "kappiness"
 [api]
 enabled = true
 port = 54321
-schemas = ["public"]
+schemas = ["public", "graphql_public"]
 max_rows = 1000
 
 [db]
 port = 54322
-major_version = 15
+major_version = 17
 
 [auth]
 enabled = true
-site_url = "http://localhost:5173"
-additional_redirect_urls = ["http://localhost:5173/admin/reset-password"]
+site_url = "https://kappiness111.github.io/kappiness-registration/"
+additional_redirect_urls = [
+  "https://kappiness111.github.io/kappiness-registration/admin/reset-password",
+  "http://localhost:5173/admin/reset-password",
+]
 # Staff accounts are created by an administrator — never by public sign-up.
 enable_signup = false
 jwt_expiry = 3600
 
 [auth.email]
-enable_signup = false
+# Keep email + password login ON for staff; new sign-ups are blocked by auth.enable_signup above.
+enabled = true
 enable_confirmations = true
+secure_password_change = true
+
 
 # Patients are not authenticated users. The function does its own checks
 # (origin, rate limit, CAPTCHA, validation) and uses the service role internally.
