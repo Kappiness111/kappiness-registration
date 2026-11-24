@@ -8,11 +8,11 @@
  * the main call to action.
  */
 @theme {
-  /* Anek Malayalam (Ek Type, India): one family for English and Malayalam */
-  --font-sans: "Anek Malayalam", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Anek Malayalam", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Anek Malayalam", ui-sans-serif, system-ui, sans-serif;
-  --font-ml: "Anek Malayalam", "Noto Sans Malayalam", sans-serif;
+  /* Manjari (Santhosh Thottingal / Swathanthra Malayalam Computing, Kerala): English and Malayalam */
+  --font-sans: "Manjari", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Manjari", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Manjari", ui-sans-serif, system-ui, sans-serif;
+  --font-ml: "Manjari", "Noto Sans Malayalam", sans-serif;
 
   --color-cocoa: #7b3d14;       /* full-bleed page colour */
   --color-cocoa-deep: #6a3310;  /* cloud shapes */
@@ -105,9 +105,8 @@
   }
   h1, h2, h3 {
     @apply text-ink;
-    font-weight: 650;
-    font-stretch: 92%;
-    letter-spacing: -0.01em;
+    font-weight: 700;
+    letter-spacing: -0.015em;
   }
   [lang="ml"] {
     font-family: var(--font-ml);
