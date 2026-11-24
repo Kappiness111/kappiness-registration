@@ -37,6 +37,19 @@ Built with React, Vite, TypeScript, Tailwind CSS, Lucide icons and **Supabase** 
 
 If `VITE_SUPABASE_URL` / `VITE_SUPABASE_PUBLISHABLE_KEY` are not set, the site runs in **preview mode**: the whole journey works, but pressing Submit sends nothing and saves nothing. The form and the thank-you page both say so. To jump straight to the thank-you page while designing, open `http://localhost:5173/?preview=thanks` (works in preview mode only). Set the environment variables (section 8) to go live.
 
+## Deploy to GitHub Pages
+
+The workflow `.github/workflows/deploy-pages.yml` runs the tests, builds the site and publishes it on every push to `main`.
+
+1. **One-time setup:** on GitHub open the repo → **Settings → Pages** → under *Build and deployment* set **Source: GitHub Actions**.
+2. Push to `main` (or open **Actions → Deploy to GitHub Pages → Run workflow**).
+3. The site appears at `https://<your-user>.github.io/<repo-name>/`, e.g. `https://kappiness111.github.io/kappiness-registration/`.
+
+Notes:
+- **Private repos:** GitHub Pages for private repositories needs a paid GitHub plan (Pro/Team/Enterprise). On the free plan, either make the repository public or deploy with Vercel instead (section 14).
+- **Going live:** add `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` and `VITE_TURNSTILE_SITE_KEY` under **Settings → Secrets and variables → Actions → Variables**, add the Pages address to the Edge Function's `ALLOWED_ORIGINS`, and to Supabase Auth redirect URLs (`…/kappiness-registration/admin/reset-password`). Without them the site runs in preview mode.
+- GitHub Pages can't send custom security headers, so the CSP/HSTS headers in `vercel.json` only apply on Vercel. For the live clinic deployment, Vercel is the stronger option.
+
 ## 1. How it works
 
 ```

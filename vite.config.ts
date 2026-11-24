@@ -4,6 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
+  // Sub-path when hosted at https://<user>.github.io/<repo>/ (set by the Pages workflow). Defaults to '/'.
+  base: process.env.BASE_PATH || '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

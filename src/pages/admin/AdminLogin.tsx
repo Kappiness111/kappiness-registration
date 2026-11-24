@@ -52,7 +52,7 @@ export default function AdminLogin() {
     if (!email.trim()) return setError('Please enter your email.');
     setLoading(true);
     try {
-      await getSupabase().auth.resetPasswordForEmail(email.trim(), { redirectTo: `${window.location.origin}/admin/reset-password` });
+      await getSupabase().auth.resetPasswordForEmail(email.trim(), { redirectTo: `${window.location.origin}${import.meta.env.BASE_URL}admin/reset-password` });
       setMode('sent'); // shown regardless of whether the account exists
     } catch {
       setError('Unable to reach the server. Please check your connection.');
