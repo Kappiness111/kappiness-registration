@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+/*
+ * Kappiness: coffee & honey.
+ * Full-bleed cocoa pages with soft cloud shapes for the welcome and thank-you
+ * moments; clean white pages with rounded cards for reading and filling in.
+ * Colours come from the logo (wordmark brown, mug brown, amber) plus honey for
+ * the main call to action.
+ */
+@theme {
+  /* Anek Malayalam (Ek Type, India): one family for English and Malayalam */
+  --font-sans: "Anek Malayalam", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Anek Malayalam", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Anek Malayalam", ui-sans-serif, system-ui, sans-serif;
+  --font-ml: "Anek Malayalam", "Noto Sans Malayalam", sans-serif;
+
+  --color-cocoa: #7b3d14;       /* full-bleed page colour */
+  --color-cocoa-deep: #6a3310;  /* cloud shapes */
+  --color-cocoa-soft: #8a4a1f;
+  --color-honey: #f6bd3c;       /* main call to action */
+  --color-honey-deep: #e9a91f;
+  --color-paper: #ffffff;
+  --color-sheet: #ffffff;
+  --color-shell: #fffaf3;       /* stamp / card ivory */
+  --color-ink: #24140a;         /* coffee-black text */
+  --color-muted: #6f5c4f;
+  --color-rule: #ecdfd2;
+  --color-leaf: #8d4100;        /* logo wordmark brown: labels, selected states */
+  --color-leaf-tint: #fbf1e6;
+  --color-bean: #542a00;        /* logo mug brown */
+  --color-amber: #c06300;       /* logo amber */
+  --color-accent: #8d4100;
+  --color-error: #b42318;
+  --color-error-soft: #fdecea;
+
+  /* names used across components */
+  --color-ivory: #ffffff;
+  --color-cream: #ffffff;
+  --color-crema: #fbf5ee;
+  --color-latte: #efe4d8;
+  --color-line: #ecdfd2;
+  --color-charcoal: #24140a;
+  --color-stone: #6f5c4f;
+  --color-espresso: #24140a;
+  --color-coffee: #8d4100;
+  --color-rust: #8d4100;
+  --color-terracotta: #8d4100;
+  --color-mustard: #f6bd3c;
+  --color-teal: #24140a;
+  --color-teal-deep: #24140a;
+  --color-teal-soft: #fbf1e6;
+  --color-mint: #fbf1e6;
+  --color-peach: #fbf5ee;
+  --color-forest: #24140a;
+  --color-botanical: #8d4100;
+  --color-olive: #b59b86;
+  --color-sage: #fbf1e6;
+  --color-mist: #fbf5ee;
+  --color-ochre: #c06300;
+  --color-clay: #b42318;
+  --color-clay-soft: #fdecea;
+
+  --shadow-soft: 0 1px 2px rgb(36 20 10 / 0.05), 0 6px 20px -12px rgb(36 20 10 / 0.25);
+  --shadow-lift: 0 24px 50px -24px rgb(36 20 10 / 0.45);
+
+  --animate-rise: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-fade: fade 0.3s ease-out both;
+  --animate-step: fade 0.3s ease-out both;
+  --animate-stamp: stamp 0.7s cubic-bezier(0.2, 0.9, 0.25, 1.15) 0.15s both;
+  --animate-draw: draw 0.6s ease-out 0.1s both;
+  --animate-drift: drift 18s ease-in-out infinite alternate;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes stamp {
+    from { opacity: 0; transform: translateY(18px) rotate(-6deg) scale(0.96); }
+    to { opacity: 1; transform: rotate(var(--tilt, 2deg)); }
+  }
+  @keyframes drift {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(24px, -10px, 0); }
+  }
+  @keyframes draw {
+    from { stroke-dashoffset: 60; }
+    to { stroke-dashoffset: 0; }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    background: #fff;
+  }
+  body {
+    @apply bg-paper font-sans text-[17px] text-ink antialiased;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 {
+    @apply text-ink;
+    font-weight: 650;
+    font-stretch: 92%;
+    letter-spacing: -0.01em;
+  }
+  [lang="ml"] {
+    font-family: var(--font-ml);
+  }
+  ::selection {
+    background: var(--color-honey);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-honey);
+    outline-offset: 2px;
+    border-radius: 10px;
+  }
+  dialog::backdrop {
+    background: rgb(36 20 10 / 0.5);
+  }
+  input, select, textarea {
+    scroll-margin-top: 90px;
+    scroll-margin-bottom: 120px;
+  }
+}
+
+/*
+ * Postage-stamp edge: a grid of round holes, kept only in the padding ring
+ * (the content box is filled back in), so the outline is scalloped.
+ */
+@utility stamp {
+  padding: 12px;
+  background: var(--color-shell);
+  -webkit-mask:
+    radial-gradient(circle 5.5px at 50% 50%, #0000 97%, #000) -7px -7px / 14px 14px round,
+    linear-gradient(#000 0 0) content-box;
+  mask:
+    radial-gradient(circle 5.5px at 50% 50%, #0000 97%, #000) -7px -7px / 14px 14px round,
+    linear-gradient(#000 0 0) content-box;
+}
+
+/* kept so older class names don't break */
+@utility wide {
+  letter-spacing: -0.015em;
+}
+@utility display-lower {
+  font-weight: 600;
+}
+@utility meta {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
